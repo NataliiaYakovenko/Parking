@@ -1,0 +1,72 @@
+const { where } = require("sequelize");
+const { Image } = require("../models");
+const createHttpError = require("http-errors");
+
+module.exports.getProtocolImages = async (req, res, next) => {
+  try {
+    const {
+      params: { protocolId },
+    } = req;
+
+    const protocolImages = await Image.findAll({ where: { protocolId } });
+
+    return res.status(200).send({ data: protocolImages });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.addProtocolImage = async (req, res, next) => {
+  try {
+    const {
+      params: { protocolId },
+      files,
+    } = req;
+
+    const images = files.map((file) => ({
+      path: file.fileName,
+      protocolId,
+    }));
+
+    const imagesFromDB = await Image.bulkCreate(images, { returning: true });
+
+    return res.status(201).send({ data: imagesFromDB });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.getImageById = async (req, res, next) => {
+  try {
+    const {
+      params: { protocolId, imageId },
+    } = req;
+
+    const image = Image.findOne({ where: { protocolId, id: imageId } });
+
+    if (!image) {
+      return next(createHttpError(404), "Image not found");
+    }
+
+    return res.status(200).send({ data: image });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.deleteImageById = async (req, res, next) => {
+  try {
+    const {
+      params: { protocolId, imageId },
+    } = req;
+
+    const count = await Image.destroy({ where: { protocolId, id: imageId } });
+    if (count === 0) {
+      return next(createHttpError(404), "Image not found");
+    }
+
+    return res.status(200).end();
+  } catch (error) {
+    next(error);
+  }
+};
