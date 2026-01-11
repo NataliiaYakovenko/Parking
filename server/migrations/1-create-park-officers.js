@@ -1,7 +1,7 @@
 "use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize){
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable("park_officers", {
       id: {
         allowNull: false,
@@ -23,6 +23,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      isWorked: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        field: 'is_worked',
+        defaultValue: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -35,7 +41,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, Sequelize){
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("park_officers");
   },
 };

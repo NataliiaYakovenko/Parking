@@ -12,7 +12,7 @@ module.exports = {
       serviceNotes: {
         allowNull: false,
         field: "service_notes",
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       officerId: {
         allowNull: false,
@@ -32,6 +32,16 @@ module.exports = {
         type: Sequelize.DOUBLE,
         field: "fine_amount",
       },
+      violatorFullName: {
+        allowNull: null,
+        type: Sequelize.STRING,
+        field: "violator_full_name",
+      },
+      violatorPassportNumber: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        field: "violator_passport_number",
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -44,7 +54,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, Sequelize){
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("protocols");
   },
 };

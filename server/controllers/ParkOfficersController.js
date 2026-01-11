@@ -83,3 +83,29 @@ module.exports.deleteParkOfficerById = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.dismissParkOfficerById = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+
+    const [count, [updatedParkOfficer]] = await ParkOfficer.update(
+      {
+        isWorked: false,
+      },
+      {
+        where: { id },
+        returning: true,
+      }
+    );
+
+    if (count === 0) {
+      return next(createHttpError(404), "Park offecer not found");
+    }
+
+    return res.status(200).send({ data: updatedParkOfficer });
+  } catch (error) {
+    next(error);
+  }
+};
