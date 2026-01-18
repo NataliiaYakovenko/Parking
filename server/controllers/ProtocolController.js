@@ -37,6 +37,7 @@ module.exports.getAllProtocolsByOfficerId = async (req, res, next) => {
   try {
     const {
       params: { officerId },
+      pagination,
     } = req;
 
     const protocols = await Protocol.findAll({
@@ -54,9 +55,10 @@ module.exports.getAllProtocolsByOfficerId = async (req, res, next) => {
         },
       ],
       order: [["updated_at", "DESC"]],
+      ...pagination,
     });
 
-    if (!pagination.length) {
+    if (!protocols.length) {
       return next(createHttpError(404, "Protocols not found"));
     }
 
