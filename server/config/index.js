@@ -1,6 +1,6 @@
 const path = require("path");
 
-modules.export = {
+module.exports = {
   PORT: process.env.PORT || 5000,
-  STATIC_PATH: path.resolve(__dirname, '..', 'publoc')
+  STATIC_PATH: path.resolve(__dirname, '..', 'public')
 };
