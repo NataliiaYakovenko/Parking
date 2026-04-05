@@ -1,4 +1,4 @@
-const parkOfficerRouter = require("express").Router();
+const ParkOfficersRouter = require("express").Router();
 const imageRouter = require("./imageRouter");
 const protocolRouter = require("./protocolRouter");
 const ParkOfficerController = require("../controllers/ParkOfficersController");
@@ -10,22 +10,22 @@ const ParkOfficerController = require("../controllers/ParkOfficersController");
 //deleteParkOfficerById
 //dismissParkOfficerById
 
-parkOfficerRouter
+ParkOfficersRouter
   .route("/")
   .get(ParkOfficerController.getAllParkOfficers)
   .post(ParkOfficerController.createParkOfficer);
 
-parkOfficerRouter
+ParkOfficersRouter
   .route("/:id")
   .get(ParkOfficerController.getParkOfficerById)
-  .put(ParkOfficerController.updatrParkOfficerById)
+  .put(ParkOfficerController.updateParkOfficerById)
   .delete(ParkOfficerController.deleteParkOfficerById);
 
-parkOfficerRouter
+ParkOfficersRouter
   .route("/:id/dismiss")
   .put(ParkOfficerController.dismissParkOfficerById);
 
-parkOfficerRouter.use("/:officerId/protocols", protocolRouter);
-parkOfficerRouter.use("/protocols/:protocolId/images", imageRouter);
+ParkOfficersRouter.use("/:officerId/protocols", protocolRouter);
+ParkOfficersRouter.use("/protocols/:protocolId/images", imageRouter);
 
-module.exports = parkOfficerRouter;
+module.exports = ParkOfficersRouter;

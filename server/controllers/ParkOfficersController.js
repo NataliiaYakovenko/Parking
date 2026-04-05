@@ -22,7 +22,7 @@ module.exports.getParkOfficerById = async (req, res, next) => {
     });
 
     if (!parkOfficer) {
-      return next(createHttpError(404), "Park offecer not found");
+      return next(createHttpError(404, "Park offecer not found"));
     }
     return res.status(200).send({ data: parkOfficer });
   } catch (error) {
@@ -45,7 +45,7 @@ module.exports.createParkOfficer = async (req, res, next) => {
   }
 };
 
-module.exports.updatrParkOfficerById = async (req, res, next) => {
+module.exports.updateParkOfficerById = async (req, res, next) => {
   try {
     const {
       params: { id },
@@ -58,7 +58,7 @@ module.exports.updatrParkOfficerById = async (req, res, next) => {
     });
 
     if (count === 0) {
-      return next(createHttpError(404), "Park offecer not found");
+      return next(createHttpError(404, "Park offecer not found"));
     }
 
     return res.status(200).send({ data: updatedParkOfficer });
@@ -75,7 +75,7 @@ module.exports.deleteParkOfficerById = async (req, res, next) => {
 
     const count = await ParkOfficer.destroy({ where: { id } });
     if (count === 0) {
-      return next(createHttpError(404), "Park offecer not found");
+      return next(createHttpError(404, "Park offecer not found"));
     }
 
     return res.status(200);
@@ -101,7 +101,7 @@ module.exports.dismissParkOfficerById = async (req, res, next) => {
     );
 
     if (count === 0) {
-      return next(createHttpError(404), "Park offecer not found");
+      return next(createHttpError(404, "Park offecer not found"));
     }
 
     return res.status(200).send({ data: updatedParkOfficer });
