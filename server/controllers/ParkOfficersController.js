@@ -75,10 +75,10 @@ module.exports.deleteParkOfficerById = async (req, res, next) => {
 
     const count = await ParkOfficer.destroy({ where: { id } });
     if (count === 0) {
-      return next(createHttpError(404, "Park offecer not found"));
+      return next(createHttpError(404, "Park officer not found"));
     }
 
-    return res.status(200);
+    return res.status(200).send({ data: { message: "Park officer deleted successfully" } });
   } catch (error) {
     next(error);
   }
