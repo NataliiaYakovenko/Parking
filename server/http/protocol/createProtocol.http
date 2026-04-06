@@ -1,0 +1,10 @@
+POST http://localhost:5000/api/protocols   HTTP/1.1
+Content-Type: application/json
+
+{
+ "serviceNotes": "This is protocol 4",
+ "officerId": 2,
+ "fineAmount": 100.00,
+ "violatorFullName": "John Doe",
+ "violatorPassportNumber": "ABC1234"
+}
