@@ -12,17 +12,17 @@ const ProtocolController = require("../controllers/ProtocolController");
 //deleteProtocolById
 
 protocolRouter
-  .route("/")
+.route("/")
   .get(paginate, ProtocolController.getAllProtocols)
   .post(uploadImages, ProtocolController.createProtocol);
 
-protocolRouter  
+protocolRouter
   .route("/parkOfficer/:officerId")
   .get(paginate, ProtocolController.getAllProtocolsByOfficerId)
 
 protocolRouter
   .route("/:id")
-  .put(uploadImages, ProtocolController.updateProtocolById)
+  .put(uploadImages, ProtocolController.updateProtocolById)  
   .delete(ProtocolController.deleteProtocolById);
 
 module.exports = protocolRouter;
