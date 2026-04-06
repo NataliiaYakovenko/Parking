@@ -1,10 +1,9 @@
-POST http://localhost:5000/api/protocols   HTTP/1.1
+POST http://localhost:5000/api/parkOfficers/2/protocols   HTTP/1.1
 Content-Type: application/json
 
 {
- "serviceNotes": "This is protocol 4",
- "officerId": 2,
- "fineAmount": 100.00,
- "violatorFullName": "John Doe",
- "violatorPassportNumber": "ABC1234"
+ "serviceNotes": "This is protocol 44",
+ "fineAmount": 400.00,
+ "violatorFullName": "Den Denovich",
+ "violatorPassportNumber": "AB223344"
 }
