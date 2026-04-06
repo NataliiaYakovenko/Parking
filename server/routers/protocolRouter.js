@@ -16,9 +16,12 @@ protocolRouter
   .get(paginate, ProtocolController.getAllProtocols)
   .post(uploadImages, ProtocolController.createProtocol);
 
+protocolRouter  
+  .route("/parkOfficer/:officerId")
+  .get(paginate, ProtocolController.getAllProtocolsByOfficerId)
+
 protocolRouter
   .route("/:id")
-  .get(paginate, ProtocolController.getAllProtocolsByOfficerId)
   .put(uploadImages, ProtocolController.updateProtocolById)
   .delete(ProtocolController.deleteProtocolById);
 

@@ -33,7 +33,7 @@ module.exports = {
         field: "fine_amount",
       },
       violatorFullName: {
-        allowNull: null,
+        allowNull: false,
         type: Sequelize.STRING,
         field: "violator_full_name",
       },

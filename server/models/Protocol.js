@@ -5,9 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ ParkOfficer, Image }) {
       Protocol.belongsTo(ParkOfficer, {
         foreignKey: "officerId",
+        as: "parkOfficer",
       });
       Protocol.hasMany(Image, {
         foreignKey: "protocolId",
+        as: "image",
       });
     }
   }
@@ -51,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Protocol",
       tableName: "protocols",
       underscored: true,
-    }
+    },
   );
   return Protocol;
 };
