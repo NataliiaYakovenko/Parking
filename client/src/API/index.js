@@ -5,5 +5,5 @@ const httpClient = axios.create({
 });
 
 export const getParkOfficers = async () => {
-  httpClient.get("/parkOfficers");
+ await httpClient.get("/parkOfficers");
 };
