@@ -1,5 +1,5 @@
 const protocolRouter = require("express").Router({ mergeParams: true });
-
+const imageRouter = require("./imageRouter");
 const { uploadImages } = require("../middlewares/imagesUpload");
 const paginate = require("../middlewares/paginate");
 
@@ -24,5 +24,6 @@ protocolRouter
   .route("/:id")
   .put(uploadImages, ProtocolController.updateProtocolById)  
   .delete(ProtocolController.deleteProtocolById);
-
+  
+protocolRouter.use("/:protocolId/images", imageRouter);  
 module.exports = protocolRouter;

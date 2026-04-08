@@ -24,7 +24,7 @@ module.exports.addProtocolImage = async (req, res, next) => {
     } = req;
 
     const images = files.map((file) => ({
-      path: file.fileName,
+      path: file.filename,
       protocolId,
     }));
 
@@ -42,10 +42,10 @@ module.exports.getImageById = async (req, res, next) => {
       params: { protocolId, imageId },
     } = req;
 
-    const image = Image.findOne({ where: { protocolId, id: imageId } });
+    const image = await Image.findOne({ where: { protocolId, id: imageId } });
 
     if (!image) {
-      return next(createHttpError(404), "Image not found");
+      return next(createHttpError(404, "Image not found"));
     }
 
     return res.status(200).send({ data: image });
@@ -62,7 +62,7 @@ module.exports.deleteImageById = async (req, res, next) => {
 
     const count = await Image.destroy({ where: { protocolId, id: imageId } });
     if (count === 0) {
-      return next(createHttpError(404), "Image not found");
+      return next(createHttpError(404, "Image not found"));
     }
 
     return res.status(200).end();
