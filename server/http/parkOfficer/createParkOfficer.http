@@ -2,7 +2,7 @@ POST http://localhost:5000/api/parkOfficers HTTP/1.1
 Content-Type: application/json
 
 {
-    "fullName": "Nataliia 3",
-    "badgeNumber": "12345",
+    "fullName": "Robert Brown",
+    "badgeNumber": "44444",
     "district": "Central Park"
 }

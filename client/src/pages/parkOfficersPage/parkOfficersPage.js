@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getParkOfficers } from "../../redux/slices/parkOfficerSlice";
 import ParkOfficer from "../../components/parkOfficer/ParkOfficer";
@@ -7,8 +7,8 @@ const ParkOfficersPage = () => {
   const { parkOfficers, isLoading, error } = useSelector(
     (state) => state.parkOfficers,
   );
-
   const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     dispatch(getParkOfficers());
@@ -21,12 +21,31 @@ const ParkOfficersPage = () => {
   if (error) {
     return <div>ERROR...</div>;
   }
+  const filteredParkOfficers = parkOfficers.filter(
+    ({ fullName, badgeNumber, district }) =>
+      fullName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      badgeNumber.toLowerCase().includes(searchValue.toLowerCase() ||
+      district.toLowerCase().includes(searchValue.toLowerCase())),
+  );
 
-  const parkOfiicersCards = parkOfficers.map((currentParkOfficer) => (
+
+  const parkOfiicersCards = filteredParkOfficers.map((currentParkOfficer) => (
     <ParkOfficer key={currentParkOfficer.id} parkOfficer={currentParkOfficer} />
   ));
 
-  return <section>{parkOfiicersCards}</section>;
+
+  return (
+    <section>
+      <input
+        type="text"
+        value={searchValue}
+        onChange={({ target: { value } }) => setSearchValue(value)}
+        placeholder="Search..."
+      />
+
+      {parkOfiicersCards}
+    </section>
+  );
 };
 
 export default ParkOfficersPage;
