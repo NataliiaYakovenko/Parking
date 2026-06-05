@@ -1,4 +1,4 @@
-article {
+.article {
   border: 2px solid black;
   margin: 15px;
   padding: 15px;
@@ -8,7 +8,6 @@ article {
     background-color 1s ease;
 }
 
-article:hover {
+.article:hover {
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.6);
 }
- 

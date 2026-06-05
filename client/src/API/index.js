@@ -7,3 +7,6 @@ const httpClient = axios.create({
 export const getParkOfficers = async () => {
   return await httpClient.get("/parkOfficers");
 };
+
+export const deleteParkOfficer = async (parkOfficerID) =>
+  await httpClient.delete(`/parkOfficers/${parkOfficerID}`);

@@ -24,15 +24,15 @@ const ParkOfficersPage = () => {
   const filteredParkOfficers = parkOfficers.filter(
     ({ fullName, badgeNumber, district }) =>
       fullName.toLowerCase().includes(searchValue.toLowerCase()) ||
-      badgeNumber.toLowerCase().includes(searchValue.toLowerCase() ||
-      district.toLowerCase().includes(searchValue.toLowerCase())),
+      badgeNumber.toString().includes(searchValue.toLowerCase()) ||
+      district.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
-
-  const parkOfiicersCards = filteredParkOfficers.map((currentParkOfficer) => (
+  const parkOfficersCards = filteredParkOfficers.map((currentParkOfficer) => (
     <ParkOfficer key={currentParkOfficer.id} parkOfficer={currentParkOfficer} />
   ));
-
+  console.log("parkOfficers", parkOfficers);
+  console.log("filteredParkOfficers", filteredParkOfficers);
 
   return (
     <section>
@@ -43,7 +43,7 @@ const ParkOfficersPage = () => {
         placeholder="Search..."
       />
 
-      {parkOfiicersCards}
+      {parkOfficersCards}
     </section>
   );
 };
