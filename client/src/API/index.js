@@ -10,3 +10,6 @@ export const getParkOfficers = async () => {
 
 export const deleteParkOfficer = async (parkOfficerID) =>
   await httpClient.delete(`/parkOfficers/${parkOfficerID}`);
+
+export const dismissParkOfficer = async (parkOfficerID) =>
+  await httpClient.put(`/parkOfficers/${parkOfficerID}/dismiss`);

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   deleteParkOfficer,
   getParkOfficers,
+  dismissParkOfficer,
 } from "../../redux/slices/parkOfficerSlice";
 
 const ParkOfficer = ({ parkOfficer }) => {
@@ -14,6 +15,11 @@ const ParkOfficer = ({ parkOfficer }) => {
     await dispatch(getParkOfficers());
   };
 
+  const dismissHandler = async () => {
+    await dispatch(dismissParkOfficer(parkOfficer.id));
+    await dispatch(getParkOfficers());
+  };
+
   return (
     <article className={styles.article}>
       {parkOfficer.fullName}
@@ -21,6 +27,7 @@ const ParkOfficer = ({ parkOfficer }) => {
       <p>District: {parkOfficer.district}</p>
       <p>{parkOfficer.isWorked ? "Worked" : "Not worked"}</p>
       <button onClick={deleteHandler}>DELETE</button>
+      <button onClick={dismissHandler}>DISMISS</button>
     </article>
   );
 };

@@ -31,8 +31,6 @@ const ParkOfficersPage = () => {
   const parkOfficersCards = filteredParkOfficers.map((currentParkOfficer) => (
     <ParkOfficer key={currentParkOfficer.id} parkOfficer={currentParkOfficer} />
   ));
-  console.log("parkOfficers", parkOfficers);
-  console.log("filteredParkOfficers", filteredParkOfficers);
 
   return (
     <section>
