@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ParkOfficer.module.scss";
 import { useDispatch } from "react-redux";
 import {
@@ -6,8 +6,12 @@ import {
   getParkOfficers,
   dismissParkOfficer,
 } from "../../redux/slices/parkOfficerSlice";
+import DeleteConfirmationModal from "./../Modals/DeleteConfirmation";
 
 const ParkOfficer = ({ parkOfficer }) => {
+  const [deleteConfirmationModalOpen, setDeleteConfirmationModalOpen] =
+    useState(false);
+
   const dispatch = useDispatch();
 
   const deleteHandler = async () => {
@@ -26,7 +30,22 @@ const ParkOfficer = ({ parkOfficer }) => {
       <p>Bage number: {parkOfficer.badgeNumber}</p>
       <p>District: {parkOfficer.district}</p>
       <p>{parkOfficer.isWorked ? "Worked" : "Not worked"}</p>
-      <button onClick={deleteHandler}>DELETE</button>
+      <button
+        onClick={() => {
+          setDeleteConfirmationModalOpen(true);
+        }}
+      >
+        DELETE
+      </button>
+      {deleteConfirmationModalOpen && (
+        <DeleteConfirmationModal
+          open={deleteConfirmationModalOpen}
+          setIsOpen={setDeleteConfirmationModalOpen}
+          officerFullName={parkOfficer.fullName}
+          deleteCallback={deleteHandler}
+        />
+      )}
+
       <button onClick={dismissHandler}>DISMISS</button>
     </article>
   );
