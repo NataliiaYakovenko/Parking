@@ -1,26 +1,12 @@
 import React from "react";
 import Modal from "react-modal";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as yup from "yup";
 import {
   addParkOfficer,
   getParkOfficers,
 } from "../../redux/slices/parkOfficerSlice";
 import { useDispatch } from "react-redux";
-
-const parkOfficerValidationSchema = yup.object().shape({
-  fullName: yup
-    .string()
-    .trim()
-    .min(3, "Full name must be at least 3 characters")
-    .required(),
-  badgeNumber: yup.string().trim().required(),
-  district: yup
-    .string()
-    .trim()
-    .min(5, "District must be at least 5 characters")
-    .required(),
-});
+import { parkOfficerValidationSchema } from "../../schemas/parkOfficerValidationSchema";
 
 const initialValues = {
   fullName: "",
