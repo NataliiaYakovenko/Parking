@@ -9,6 +9,7 @@ import {
 import DeleteConfirmationModal from "./../Modals/DeleteConfirmation";
 
 const ParkOfficer = ({ parkOfficer }) => {
+
   const [deleteConfirmationModalOpen, setDeleteConfirmationModalOpen] =
     useState(false);
 

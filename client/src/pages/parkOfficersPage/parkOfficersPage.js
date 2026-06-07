@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getParkOfficers } from "../../redux/slices/parkOfficerSlice";
 import ParkOfficer from "../../components/parkOfficer/ParkOfficer";
+import AddParkOfficer from "../../components/Modals/AddParkOfficer";
 
 const ParkOfficersPage = () => {
   const { parkOfficers, isLoading, error } = useSelector(
     (state) => state.parkOfficers,
   );
   const dispatch = useDispatch();
+  const [addParkOfficerOpen, setAddParkOfficerOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
@@ -40,8 +42,14 @@ const ParkOfficersPage = () => {
         onChange={({ target: { value } }) => setSearchValue(value)}
         placeholder="Search..."
       />
-
+      <button onClick={() => setAddParkOfficerOpen(true)}>Add officer</button>
       {parkOfficersCards}
+      {addParkOfficerOpen && (
+        <AddParkOfficer
+          open={addParkOfficerOpen}
+          setIsOpen={setAddParkOfficerOpen}
+        />
+      )}
     </section>
   );
 };
