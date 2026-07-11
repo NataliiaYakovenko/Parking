@@ -1,7 +1,8 @@
-import ParkOfficersPage from "./pages/parkOfficersPage/parkOfficersPage";
+// import ParkOfficersPage from "./pages/parkOfficersPage/parkOfficersPage";
+import ProtocolsPage from "./pages/protocolsPage/protocolsPage";
 
 function App() {
-  return <ParkOfficersPage />;
+  return <ProtocolsPage />;
 }
 
 export default App;

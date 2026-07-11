@@ -28,7 +28,7 @@ const ParkOfficer = ({ parkOfficer }) => {
   };
 
   return (
-    <article className={styles.article}>
+    <article className={styles.cardWrapper}>
       {parkOfficer.fullName}
       <p>Bage number: {parkOfficer.badgeNumber}</p>
       <p>District: {parkOfficer.district}</p>
