@@ -1,5 +1,16 @@
-@use'../../common/styles/template';
+@use "../../common/styles/template";
 
 .cardWrapper {
-@extend %card-wrapper
+  @extend %card-wrapper;
+}
+
+.img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.slider{
+    width: 40%;
+    margin: 50px
 }
