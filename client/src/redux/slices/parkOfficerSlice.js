@@ -54,7 +54,7 @@ const updateParkOfficer = createAsyncThunk(
   `${SLICE_NAME}/updateParkOfficer`,
   async ({ parkOfficerID, updatedData }, thunkAPI) => {
     try {
-      await API.updateParkOfficer(parkOfficerID, updatedData );
+      await API.updateParkOfficer(parkOfficerID, updatedData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -70,69 +70,69 @@ const initialState = {
 const parkOfficerSlice = createSlice({
   name: SLICE_NAME,
   initialState,
-  extraReducers: (bulder) => {
-    bulder.addCase(getParkOfficers.pending, (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getParkOfficers.pending, (state, action) => {
       state.error = null;
       state.isLoading = true;
     });
-    bulder.addCase(getParkOfficers.fulfilled, (state, action) => {
+    builder.addCase(getParkOfficers.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
       state.parkOfficers = action.payload;
     });
-    bulder.addCase(getParkOfficers.rejected, (state, action) => {
+    builder.addCase(getParkOfficers.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
 
-    bulder.addCase(deleteParkOfficer.pending, (state, action) => {
+    builder.addCase(deleteParkOfficer.pending, (state, action) => {
       state.error = null;
       state.isLoading = true;
     });
-    bulder.addCase(deleteParkOfficer.fulfilled, (state, action) => {
+    builder.addCase(deleteParkOfficer.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
     });
-    bulder.addCase(deleteParkOfficer.rejected, (state, action) => {
+    builder.addCase(deleteParkOfficer.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
 
-    bulder.addCase(dismissParkOfficer.pending, (state, action) => {
+    builder.addCase(dismissParkOfficer.pending, (state, action) => {
       state.error = null;
       state.isLoading = true;
     });
-    bulder.addCase(dismissParkOfficer.fulfilled, (state, action) => {
+    builder.addCase(dismissParkOfficer.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
     });
-    bulder.addCase(dismissParkOfficer.rejected, (state, action) => {
+    builder.addCase(dismissParkOfficer.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
 
-    bulder.addCase(addParkOfficer.pending, (state, action) => {
+    builder.addCase(addParkOfficer.pending, (state, action) => {
       state.error = null;
       state.isLoading = true;
     });
-    bulder.addCase(addParkOfficer.fulfilled, (state, action) => {
+    builder.addCase(addParkOfficer.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
     });
-    bulder.addCase(addParkOfficer.rejected, (state, action) => {
+    builder.addCase(addParkOfficer.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
 
-    bulder.addCase(updateParkOfficer.pending, (state, action) => {
+    builder.addCase(updateParkOfficer.pending, (state, action) => {
       state.error = null;
       state.isLoading = true;
     });
-    bulder.addCase(updateParkOfficer.fulfilled, (state, action) => {
+    builder.addCase(updateParkOfficer.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
     });
-    bulder.addCase(updateParkOfficer.rejected, (state, action) => {
+    builder.addCase(updateParkOfficer.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });

@@ -23,3 +23,7 @@ export const updateParkOfficer = async (parkOfficerID, updatedData) =>
 export const getAllProtocols = async () => {
   return await httpClient.get("/protocols");
 };
+
+export const deleteProtocolById = async (parkOfficerId, protocolId) => {
+  return await httpClient.delete(`/parkOfficers/${parkOfficerId}/protocols/${protocolId}`);
+}

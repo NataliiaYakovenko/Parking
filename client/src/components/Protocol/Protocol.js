@@ -3,14 +3,31 @@ import styles from "./Protocol.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {
+  deleteProtocolById,
+  getAllProtocols,
+} from "../../redux/slices/protocolSlice";
+import { useDispatch } from "react-redux";
 
 const Protocol = ({ protocol }) => {
+  const dispatch = useDispatch();
+
   const setting = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const deleteHandler = async () => {
+    await dispatch(
+      deleteProtocolById({
+        parkOfficerId: protocol.officerId,
+        protocolId: protocol.id,
+      }),
+    );
+    await dispatch(getAllProtocols());
   };
 
   return (
@@ -26,6 +43,8 @@ const Protocol = ({ protocol }) => {
 
       <p>Officer full name:{protocol.parkOfficer.full_name}</p>
       <p>Officer badge number: {protocol.parkOfficer.badge_number}</p>
+
+      <button onClick={deleteHandler}>DELETE</button>
 
       {protocol.image.length > 0 && (
         <Slider {...setting} className={styles.slider}>
