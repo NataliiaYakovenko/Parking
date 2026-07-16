@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Protocol.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,6 +10,9 @@ import {
 import { useDispatch } from "react-redux";
 
 const Protocol = ({ protocol }) => {
+  const [deleteConfirmationModalOpen, setDeleteConfirmationModalOpen] =
+    useState(false);
+
   const dispatch = useDispatch();
 
   const setting = {
