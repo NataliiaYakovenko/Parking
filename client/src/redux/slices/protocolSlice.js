@@ -26,6 +26,17 @@ const addImagesToProtocol = createAsyncThunk(
   },
 );
 
+const deleteProtocolImageById = createAsyncThunk(
+  `${SLICE_NAME}/deleteProtocolImageById`,
+  async ({ protocolId, imageId }, thunkAPI) => {
+    try {
+      await API.deleteProtocolImageById(protocolId, imageId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const getAllProtocols = createAsyncThunk(
   `${SLICE_NAME}/getAllProtocols`,
   async (param, thunkAPI) => {
@@ -113,6 +124,19 @@ const protocolSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
+
+    builder.addCase(deleteProtocolImageById.pending, (state, action) => {
+      state.error = null;
+      state.isLoading = true;
+    });
+    builder.addCase(deleteProtocolImageById.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+    });
+    builder.addCase(deleteProtocolImageById.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
@@ -123,6 +147,7 @@ export {
   deleteProtocolById,
   updateProtocol,
   addImagesToProtocol,
+  deleteProtocolImageById,
 };
 
 export default reducer;

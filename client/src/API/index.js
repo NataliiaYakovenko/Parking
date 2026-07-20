@@ -31,4 +31,12 @@ export const deleteProtocolById = async (parkOfficerId, protocolId) => {
 };
 
 export const updateProtocol = async (parkOfficerId, protocolId, updatedData) =>
-  await httpClient.put(`/parkOfficers/${parkOfficerId}/protocols/${protocolId}`, updatedData);
+  await httpClient.put(
+    `/parkOfficers/${parkOfficerId}/protocols/${protocolId}`,
+    updatedData,
+  );
+
+//DELETE http://localhost:5000/api/protocols/13/images/5
+export const deleteProtocolImageById = async (protocolId, imageId) => {
+  return await httpClient.delete(`/protocols/${protocolId}/images/${imageId}`);
+};

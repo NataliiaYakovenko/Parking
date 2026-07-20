@@ -5,7 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
   deleteProtocolById,
-  getAllProtocols,
+  refreshProtocols,
+  deleteProtocolImageById,
 } from "../../redux/slices/protocolSlice";
 import { useDispatch } from "react-redux";
 import AddImage from "../Modals/AddImage";
@@ -16,6 +17,8 @@ const Protocol = ({ protocol, refreshProtocols }) => {
 
   const [addImageModalOpen, setAddImageModalOpen] = useState(false);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const dispatch = useDispatch();
 
   const setting = {
@@ -24,6 +27,9 @@ const Protocol = ({ protocol, refreshProtocols }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    afterChange: (currentImageIndex) => {
+      setCurrentSlide(currentImageIndex);
+    },
   };
 
   const deleteHandler = async () => {
@@ -33,7 +39,17 @@ const Protocol = ({ protocol, refreshProtocols }) => {
         protocolId: protocol.id,
       }),
     );
-    await dispatch(getAllProtocols());
+    refreshProtocols();
+  };
+
+  const deleteImageHandler = async () => {
+    await dispatch(
+      deleteProtocolImageById({
+        protocolId: protocol.id,
+        imageId: protocol.image[currentSlide].id,
+      }),
+    );
+    refreshProtocols();
   };
 
   return (
@@ -58,7 +74,6 @@ const Protocol = ({ protocol, refreshProtocols }) => {
           open={addImageModalOpen}
           setIsOpen={setAddImageModalOpen}
           protocolId={protocol.id}
-          refreshProtocols={refreshProtocols}
         />
       )}
 
@@ -73,6 +88,10 @@ const Protocol = ({ protocol, refreshProtocols }) => {
             />
           ))}
         </Slider>
+      )}
+
+      {protocol.image.length > 0 && (
+        <button onClick={deleteImageHandler}>DELETE IMAGE</button>
       )}
     </article>
   );
