@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProtocols } from "../../redux/slices/protocolSlice";
 import Protocol from "../../components/Protocol/Protocol";
 
+
 const ProtocolsPage = () => {
   const { protocols, isLoading, error } = useSelector(
     (state) => state.protocols,
@@ -10,6 +11,7 @@ const ProtocolsPage = () => {
   const dispatch = useDispatch();
 
   const [searchValue, setSearchValue] = useState("");
+
 
   useEffect(() => {
     dispatch(getAllProtocols());

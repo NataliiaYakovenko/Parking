@@ -1,7 +1,30 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as API from "../../API";
+import * as FETCH_API from "../../API/uploadImage";
 
 const SLICE_NAME = "protocols";
+
+const updateProtocol = createAsyncThunk(
+  `${SLICE_NAME}/updateProtocol`,
+  async ({ parkOfficerId, protocolId, updateData }, thunkAPI) => {
+    try {
+      await API.updateProtocol(parkOfficerId, protocolId, updateData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+const addImagesToProtocol = createAsyncThunk(
+  `${SLICE_NAME}/addImagesToProtocol`,
+  async ({ protocolId, images }, thunkAPI) => {
+    try {
+      await FETCH_API.addProtocolImage(images, protocolId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
 
 const getAllProtocols = createAsyncThunk(
   `${SLICE_NAME}/getAllProtocols`,
@@ -64,11 +87,42 @@ const protocolSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
+
+    builder.addCase(updateProtocol.pending, (state, action) => {
+      state.error = null;
+      state.isLoading = true;
+    });
+    builder.addCase(updateProtocol.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+    });
+    builder.addCase(updateProtocol.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(addImagesToProtocol.pending, (state, action) => {
+      state.error = null;
+      state.isLoading = true;
+    });
+    builder.addCase(addImagesToProtocol.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+    });
+    builder.addCase(addImagesToProtocol.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
 const { reducer } = protocolSlice;
 
-export { getAllProtocols, deleteProtocolById };
+export {
+  getAllProtocols,
+  deleteProtocolById,
+  updateProtocol,
+  addImagesToProtocol,
+};
 
 export default reducer;

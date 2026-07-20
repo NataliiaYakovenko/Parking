@@ -8,10 +8,13 @@ import {
   getAllProtocols,
 } from "../../redux/slices/protocolSlice";
 import { useDispatch } from "react-redux";
+import AddImage from "../Modals/AddImage";
 
 const Protocol = ({ protocol }) => {
   const [deleteConfirmationModalOpen, setDeleteConfirmationModalOpen] =
     useState(false);
+
+  const [addImageModalOpen, setAddImageModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -48,6 +51,15 @@ const Protocol = ({ protocol }) => {
       <p>Officer badge number: {protocol.parkOfficer.badge_number}</p>
 
       <button onClick={deleteHandler}>DELETE</button>
+
+      <button onClick={() => setAddImageModalOpen(true)}>ADD IMAGE</button>
+      {addImageModalOpen && (
+        <AddImage
+          open={addImageModalOpen}
+          setIsOpen={setAddImageModalOpen}
+          protocolId={protocol.id}
+        />
+      )}
 
       {protocol.image.length > 0 && (
         <Slider {...setting} className={styles.slider}>
