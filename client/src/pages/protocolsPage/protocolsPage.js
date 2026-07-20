@@ -12,10 +12,15 @@ const ProtocolsPage = () => {
 
   const [searchValue, setSearchValue] = useState("");
 
+  const refreshProtocols=()=>{
+     dispatch(getAllProtocols());
+  }
+
 
   useEffect(() => {
-    dispatch(getAllProtocols());
-  }, [dispatch]);
+    // dispatch(getAllProtocols());
+    refreshProtocols();
+  }, []);
 
   if (isLoading) {
     return <div>LOADING...</div>;
@@ -45,7 +50,7 @@ const ProtocolsPage = () => {
   );
 
   const protocolsCards = filteredProtocols.map((currentProtocol) => (
-    <Protocol key={currentProtocol.id} protocol={currentProtocol} />
+    <Protocol key={currentProtocol.id} protocol={currentProtocol} refreshProtocols={refreshProtocols} />
   ));
 
   return (

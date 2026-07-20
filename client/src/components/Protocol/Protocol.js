@@ -10,7 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import AddImage from "../Modals/AddImage";
 
-const Protocol = ({ protocol }) => {
+const Protocol = ({ protocol, refreshProtocols }) => {
   const [deleteConfirmationModalOpen, setDeleteConfirmationModalOpen] =
     useState(false);
 
@@ -58,6 +58,7 @@ const Protocol = ({ protocol }) => {
           open={addImageModalOpen}
           setIsOpen={setAddImageModalOpen}
           protocolId={protocol.id}
+          refreshProtocols={refreshProtocols}
         />
       )}
 

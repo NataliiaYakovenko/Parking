@@ -17,7 +17,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const AddImage = ({ open, setIsOpen, protocolId }) => {
+const AddImage = ({ open, setIsOpen, protocolId , refreshProtocols}) => {
   const dispatch = useDispatch();
 
   const [file, setFile] = useState(null);
@@ -30,7 +30,8 @@ const AddImage = ({ open, setIsOpen, protocolId }) => {
       });
 
       try {
-        await dispatch(addImagesToProtocol({ protocolId, images: formData }));
+        await dispatch(addImagesToProtocol({ protocolId, images: formData }))
+        await refreshProtocols();
       } catch (error) {
         console.error(error);
       }
