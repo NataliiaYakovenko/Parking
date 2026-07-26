@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const router = require("./routers");
 const errorHandler = require("./middlewares/errorHandler");
+require("./models/MongoDB/index");
 
 const app = express();
 
