@@ -10,7 +10,7 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  const handleSubmitSignUo = (values, { resetForm }) => {
+  const handleSubmitSignUp = (values, { resetForm }) => {
     console.log(values);
     resetForm();
   };
@@ -20,30 +20,32 @@ const SignUp = () => {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmitSignUo}
+        onSubmit={handleSubmitSignUp}
         validationSchema={signUpValidationSchema}
       >
-        {(formikProps) => {
+        {() => (
           <Form>
             <label>
               Nickname:
               <Field name="nickname" placeholder="Your nickname" />
               <ErrorMessage name="nickname" />
             </label>
-
+            <br />
             <label>
               Email:
               <Field name="email" placeholder="nickname@gmail.com" />
               <ErrorMessage name="email" />
             </label>
-
+            <br />
             <label>
               Password:
               <Field name="password" placeholder="gr3at@3wdsG" />
               <ErrorMessage name="password" />
             </label>
-          </Form>;
-        }}
+            <br />
+            <button type="submit">Registration</button>
+          </Form>
+        )}
       </Formik>
     </>
   );
