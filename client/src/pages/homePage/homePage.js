@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import SignUp from "../../components/SignUp/SignUp";
 import SignIn from "../../components/SignIn/SignIn";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+  const { isLoading, error } = useSelector((state) => state.user);
+
   const [state, setState] = useState(false);
 
   const buttonHandler = () => {

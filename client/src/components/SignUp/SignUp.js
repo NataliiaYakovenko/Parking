@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./SignUp.module.scss";
 import { signUpValidationSchema } from "../../schemas/signUpValidationSchema";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/slices/userSlice";
 
 const initialValues = {
   nickname: "",
@@ -10,8 +12,10 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  const handleSubmitSignUp = (values, { resetForm }) => {
-    console.log(values);
+  const dispatch = useDispatch();
+
+  const handleSubmitSignUp = async (values, { resetForm }) => {
+    await dispatch(registerUser(values));
     resetForm();
   };
   return (
@@ -39,7 +43,11 @@ const SignUp = () => {
             <br />
             <label>
               Password:
-              <Field name="password" placeholder="gr3at@3wdsG" />
+              <Field
+                name="password"
+                type="password"
+                placeholder="gr3at@3wdsG"
+              />
               <ErrorMessage name="password" />
             </label>
             <br />

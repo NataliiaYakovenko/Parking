@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./SignIn.module.scss";
 import { signInValidationSchema } from "../../schemas/signInValidationSchema copy";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/slices/userSlice";
 
 const initialValues = {
   email: "",
@@ -9,14 +11,16 @@ const initialValues = {
 };
 
 const SignIn = () => {
-  const handleSubmitSignIn = (values, { resetForm }) => {
-    console.log(values);
+  const dispatch = useDispatch();
+
+  const handleSubmitSignIn = async (values, { resetForm }) => {
+    await dispatch(loginUser(values));
     resetForm();
   };
 
   return (
     <>
-      <h2>Sign Up</h2>
+      <h2>Sign In</h2>
 
       <Formik
         initialValues={initialValues}
@@ -33,7 +37,11 @@ const SignIn = () => {
             <br />
             <label>
               Password:
-              <Field name="password" placeholder="gr3at@3wdsG" />
+              <Field
+                name="password"
+                type="password"
+                placeholder="gr3at@3wdsG"
+              />
               <ErrorMessage name="password" />
             </label>
             <br />
