@@ -2,7 +2,7 @@ POST http://localhost:5000/api/users/sign-up/   HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "Nata",
-    "email": "nata@gmail.com",
-    "password": "Nata123$"
+    "nickname": "Lidiia2",
+    "email": "lidiia2@gmail.com",
+    "password": "Lidiia123$"
 }

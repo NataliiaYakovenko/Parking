@@ -3,6 +3,8 @@ const imageRouter = require("./imageRouter");
 const protocolRouter = require("./protocolRouter");
 const ParkOfficerController = require("../controllers/ParkOfficersController");
 const ProtocolController = require("../controllers/ProtocolController");
+const { checkToken } = require("../middlewares/checkToken");
+
 
 //getAllParkOfficers
 //getParkOfficerById
@@ -21,7 +23,7 @@ ParkOfficersRouter.route("/:id")
   .delete(ParkOfficerController.deleteParkOfficerById);
 
 ParkOfficersRouter.route("/:id/dismiss").put(
-  ParkOfficerController.dismissParkOfficerById,
+ ParkOfficerController.dismissParkOfficerById,
 );
 
 ParkOfficersRouter.get("/protocols", ProtocolController.getAllProtocols);

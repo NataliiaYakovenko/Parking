@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import styles from "./SignUp.module.scss";
+// import styles from "./SignUp.module.scss";
 import { signUpValidationSchema } from "../../schemas/signUpValidationSchema";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/slices/userSlice";

@@ -1,0 +1,25 @@
+const createHttpError = require("http-errors");
+const { verifyAccesToken } = require("../services/createSession");
+// const RefreshTokenError = require("../errors/RefreshTokenError");
+
+module.exports.checkToken = async (req, res, next) => {
+  try {
+    const {
+      headers: { authorization },
+    } = req;
+
+    if (!authorization) {
+      return next(createHttpError(401, "Need Bearer authorization"));
+    }
+
+    const [, token] = authorization.split(" ");
+
+    const payload = await verifyAccesToken(token);
+
+    req.tokenPayload = payload;
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};

@@ -1,6 +1,7 @@
 const userRouter = require("express").Router();
 const UserController = require("../controllers/UserController");
 const { hashPass } = require("../middlewares/hashPassword");
+const {checkToken} = require("../middlewares/checkToken");
 
 userRouter
 .route("/sign-up")
@@ -10,5 +11,12 @@ userRouter
 .route("/sign-in")
 .post(UserController.loginUser);
 
+userRouter
+.route('/')
+.get(UserController.checkAuth )
+
+userRouter
+.route('/refresh')
+.post(UserController.refreshSession)
 
 module.exports = userRouter;

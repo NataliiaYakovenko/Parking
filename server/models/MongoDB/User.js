@@ -12,7 +12,7 @@ const userSchema = new Schema({
     required: true,
     unique: true,
     validation: {
-      validator: (value) =>
+      validate: (value) =>
         /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value),
     },
   },
@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    role: "user",
+    default: "user",
   },
 });
 
