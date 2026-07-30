@@ -5,7 +5,14 @@ const httpCllient = axios.create({
 });
 
 export const loginUser = async (userData) =>
-  await httpCllient.post(`/sign-in`, userData);
+  await httpCllient.post(`/sign-in`, userData, geolocation);
 
 export const registerUser = async (userData) =>
-  await httpCllient.post(`/sign-up`, userData);
+  await httpCllient.post(`/sign-up`, userData, geolocation);
+
+let geolocation;
+navigator.geolocation.getCurrentPosition(
+  ({ coords: { latitude, longitude } }) => {
+    geolocation = `${latitude}, ${longitude}`;
+  },
+);
