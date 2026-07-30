@@ -48,7 +48,7 @@ const userSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.protocols = action.payload;
+      state.user = action.payload;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.isLoading = false;
@@ -62,7 +62,7 @@ const userSlice = createSlice({
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.protocols = action.payload;
+      state.user = action.payload;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.isLoading = false;

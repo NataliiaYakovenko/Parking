@@ -17,7 +17,7 @@ module.exports.registrationUser = async (req, res, next) => {
 
     const createdUser = await User.create({
       ...body,
-      passwordHash: body.passwordHash, 
+      passwordHash: req.passwordHash, 
     });
 
     const accessToken = await createAccesToken({

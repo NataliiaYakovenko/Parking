@@ -4,7 +4,7 @@ const {
   REFRESH_SECRET,
   REFRESH_EXPIRES_TIME,
   ACCESS_SECRET,
-  ACCES_EXPIRES_TIME,
+  ACCESS_EXPIRES_TIME,
 } = require("../config/constants");
 
 const promissifyJWTSign = promisify(jwt.sign);
@@ -17,7 +17,7 @@ module.exports.createAccesToken = async ({
   geolocation,
 }) =>
   await promissifyJWTSign({ userId, email, role, geolocation }, ACCESS_SECRET, {
-    expiresIn: ACCES_EXPIRES_TIME,
+    expiresIn: ACCESS_EXPIRES_TIME,
   });
 
 module.exports.verifyAccesToken = async (token) =>
