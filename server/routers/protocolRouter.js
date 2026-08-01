@@ -4,17 +4,15 @@ const { uploadImages } = require("../middlewares/imagesUpload");
 const paginate = require("../middlewares/paginate");
 const ProtocolController = require("../controllers/ProtocolController");
 const { checkToken } = require("../middlewares/checkToken");
-
-// getAllProtocols
-//createProtocol
-//getAllProtocolsByOfficerId
-//updateProtocolById
-//deleteProtocolById
+const { checkAdmin } = require("../middlewares/checkAdmin");
 
 protocolRouter
   .route("/")
   .get(paginate, ProtocolController.getAllProtocols)
-  .post(uploadImages, ProtocolController.createProtocol);
+  .post(
+    uploadImages,
+    ProtocolController.createProtocol,
+  );
 
 protocolRouter
   .route("/parkOfficer/:officerId")
@@ -22,7 +20,10 @@ protocolRouter
 
 protocolRouter
   .route("/:id")
-  .put(uploadImages, ProtocolController.updateProtocolById)
+  .put(
+    uploadImages,
+    ProtocolController.updateProtocolById,
+  )
   .delete(ProtocolController.deleteProtocolById);
 
 protocolRouter.use("/:protocolId/images", imageRouter);
