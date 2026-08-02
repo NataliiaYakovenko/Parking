@@ -74,9 +74,16 @@ module.exports.getAllUsers = async (req, res, next) => {
   try {
     const allUsers = await Users.find();
 
-    return res.status(200).send({ data: allUsers });
+    const bannedUsers = await BanList.find();
+
+    const bannedUsersId = bannedUsers.map((ban) => ban.userId);
+
+    const filteredUsers = allUsers.filter(
+      (user) => !bannedUsersId.includes(user._id),
+    );
+
+    return res.status(200).send({ data: filteredUsers });
   } catch (error) {
     next(error);
   }
 };
-
