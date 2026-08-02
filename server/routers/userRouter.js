@@ -13,8 +13,12 @@ userRouter.route("/").get(UserController.checkAuth);
 
 userRouter.route("/refresh").post(UserController.refreshSession);
 
-userRouner.route("/banlist").post(AdminController.bun);
+userRouter.route("/banlist").post(AdminController.bun);
 
-userRouner.route("/banlist").delete(AdminController.unban);
+userRouter.route("/banlist").delete(AdminController.unban);
+
+userRouter.route("/all/users").get(AdminController.getAllUsers);
+
+userRouter.route("/all/band").get(AdminController.getAllBannedUsers);
 
 module.exports = userRouter;

@@ -1,4 +1,4 @@
-const { User, BanList } = require("../models/MongoDB/BanList");
+const { User, BanList } = require("../models/MongoDB");
 const createHttpError = require("http-errors");
 
 module.exports.bun = async (req, res, next) => {
@@ -47,3 +47,36 @@ module.exports.unban = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.getAllBannedUsers = async (req, res, next) => {
+  try {
+    const bannedUsers = await BanList.find();
+
+    const usersWithBans = [];
+
+    for (const ban of bannedUsers) {
+      const user = User.findOne({ userId: ban.userId });
+
+      const userInfo = {
+        user,
+        banInfo: ban,
+      };
+      usersWithBans.push(userInfo);
+    }
+
+    return res.status(200).send({ data: usersWithBans });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.getAllUsers = async (req, res, next) => {
+  try {
+    const allUsers = await Users.find();
+
+    return res.status(200).send({ data: allUsers });
+  } catch (error) {
+    next(error);
+  }
+};
+
