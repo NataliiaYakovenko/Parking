@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const User = require("./User");
 const RefreshToken = require("./RefreshToken");
+const BanList = require("./BanList");
 
 const env = process.env.NODE_ENV || "development";
 const configPath = path.join(__dirname, "..", "..", "config/configMongo.json");
@@ -25,4 +26,5 @@ mongoose
 module.exports = {
   User,
   RefreshToken,
+  BanList,
 };
