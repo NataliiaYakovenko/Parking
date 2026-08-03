@@ -17,7 +17,7 @@ userRouter.route("/banlist").post(AdminController.bun);
 
 userRouter.route("/banlist").delete(AdminController.unban);
 
-userRouter.route("/all/users").get(AdminController.getAllUsers);
+userRouter.route("/all").get(AdminController.getAllUsers);
 
 userRouter.route("/all/band").get(AdminController.getAllBannedUsers);
 

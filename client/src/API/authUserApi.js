@@ -16,3 +16,13 @@ navigator.geolocation.getCurrentPosition(
     geolocation = `${latitude}, ${longitude}`;
   },
 );
+
+
+
+export const getAllUsers=async()=> {
+  return await httpCllient.get('/users/all')
+}
+
+export const getAllBandUsers=async()=>{
+  return await httpCllient.get('/users/all/band')
+}

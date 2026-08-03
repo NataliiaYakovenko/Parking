@@ -22,6 +22,6 @@ const banListSchema = new Schema({
   },
 });
 
-const banListSchema = mongoose.model("BanList", banListSchema);
+const BanList = mongoose.model("BanList", banListSchema);
 
 module.exports = BanList;

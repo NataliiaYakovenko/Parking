@@ -3,6 +3,7 @@ import ProtocolsPage from "./pages/protocolsPage/protocolsPage";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import styles from "./App.module.scss";
 import HomePage from "./pages/homePage/homePage";
+import AdminPanelPage from "./pages/adminPanelPage/adminPanelPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ParkOfficersPage />} />
           <Route path="/protocols" element={<ProtocolsPage />} />
+          <Route path="admin" element={<AdminPanelPage/>}/>
         </Routes>
       </BrowserRouter>
     </>
